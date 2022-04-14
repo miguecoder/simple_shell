@@ -10,7 +10,6 @@ int shell(void)
 	long counter;
 	int i, status;
 
-
 	while (1)
 	{
 		char *prompt = "SHELL_GOD$ ";
