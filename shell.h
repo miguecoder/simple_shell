@@ -12,4 +12,28 @@
 #include <errno.h>
 #include <signal.h>
 
+extern char **environ;
+
+/**
+ * struct built - singly linked list
+ * @key: variable
+ * @function: function
+ */
+
+typedef struct built_ins
+{
+	char *key;
+	int (*function)();
+} built_t;
+
+
+int main(void);
+int shell(void)
+int env_ins(void);
+int exit_ins(void);
+char get_commando(void);
+int _strcmp(char *s1, char *s2);
+int _strlen(char *s);
+
+
 #endif
