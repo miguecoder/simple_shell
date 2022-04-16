@@ -34,6 +34,8 @@ int exit_ins(void);
 char get_commando(void);
 int _strcmp(char *s1, char *s2);
 int _strlen(char *s);
-
+char *_strcat(char *dest, char *src, int n);
+char *_strcpy(char *dest, char *src, int n);
+int ct_word(char *strn, char *delim);
 
 #endif
