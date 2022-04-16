@@ -1,7 +1,9 @@
 #include "shell.h"
 /**
- *
- *
+ * ct_word - Functions that count how many word have the command
+ * @strn: String that contains the line command got
+ * @delim: Delimiter for each word
+ * Return: number of words.
  */
 int ct_word(char *strn, char *delim)
 {

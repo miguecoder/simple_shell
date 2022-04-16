@@ -24,10 +24,10 @@ char **tk_cm(char *comand, char *delim)
 	return (token);
 }
 /**
- * tk_path -
- * @
+ * tk_path - Function that do tokens with de
  * Return:
  */
-void tk_path()
+void tk_path(void)
 {
+	;
 }
