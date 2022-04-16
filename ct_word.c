@@ -6,7 +6,7 @@
 int ct_word(char *strn, char *delim)
 {
 	int ct = 0;
-	int letter = 0;
+	int word = 0;
 
 	while (*strn)
 	{
@@ -16,9 +16,9 @@ int ct_word(char *strn, char *delim)
 		else if (ct == 0)
 		{
 			ct = 1;
-			letter++;
+			word++;
 		}
 		strn++;
 	}
-	return (letter);
+	return (word);
 }
