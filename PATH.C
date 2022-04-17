@@ -59,21 +59,20 @@ char *_strdup(const char *s)
 char *_path_dir(char *comd)
 {
 	char *path, *rout;
-	char *colon = ":\n";
+	char *delim = ":\n";
 	char *comand;
 	struct stat st;
-	/*char *dest;*/
 
 
 	if (stat(comd, &st) == 0)
 		return (comd);
 
 	path = _getenv("PATH");
-	rout = strtok(path, colon);
+	rout = strtok(path, delim);
 
 	while (rout != NULL)
 	{
-		comand = malloc(sizeof(char) * (_strlen(dir) + _strlen(comd)) + 2)
+		comand = malloc(sizeof(char) * (_strlen(rout) + _strlen(comd) + 2));
 		if (comand == NULL)
 		{
 			return (NULL);
@@ -88,7 +87,7 @@ char *_path_dir(char *comd)
 			rout = _strdup(comand);
 			return (comand);
 		}
-		rout = strtok(NULL, colon);
+		rout = strtok(NULL, delim);
 		rout++;
 	}
 	free(comand);
