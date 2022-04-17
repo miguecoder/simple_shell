@@ -12,7 +12,7 @@ int count_word(char *strn, char *delim)
 
 	while (*strn)
 	{
-		if (*strn == *delim || *strn == '\n' || *str == '\t')
+		if (*strn == *delim || *strn == '\n' || *strn == '\t')
 			ct = 0;
 
 		else if (ct == 0)

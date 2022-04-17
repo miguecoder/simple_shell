@@ -5,11 +5,12 @@
  * @copy: line comand got.
  * Return: 0 always.
  */
-int execution(**list_token, *copy)
+int execution(char **list_token, char *copy)
 {
 	pid_t pidC;
 	char *rout;
 	int status;
+	int error_numbs = 0;
 
 	pidC = fork();
 
@@ -20,8 +21,9 @@ int execution(**list_token, *copy)
 	else if (pidC == 0)
 	{
 		rout = _path_dir(list_token[0]);
-		execve = (rout, list_token, environ);
-		error_input(errno, copy);
+		execve(rout, list_token, environ);
+		error_numbs = errno;
+		error_input(error_numbs, copy);
 		free(rout);
 		exit(0);
 	}

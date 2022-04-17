@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
  * error_input - Funtion for error in line comand
- * @errno: number of last error
+ * @err_no: number of last error
  * @copy: incoming command
  * Return: nothing
  */
-void error_input(int errno, char *copy)
+void error_input(int err_no, char *copy)
 {
 	char *msj_error;
 	int length = 0;
@@ -17,15 +17,15 @@ void error_input(int errno, char *copy)
 		return;
 	}
 	_strcat(msj_error, "hsh: ");
-	_strcat(msj_error, '1');
+	_strcat(msj_error, "1");
 	_strcat(msj_error, ": ");
 	_strcat(msj_error, copy);
 
-	if (errno == 14)
+	if (err_no == 14)
 	{
 		_strcat(msj_error, ": not found\n");
 		length = _strlen(msj_error);
-		write(STDOUT, msj_error, (length + 1));
+		write(1, msj_error, (length + 1));
 	}
 	else
 		perror(msj_error);

@@ -4,7 +4,7 @@
  * int the shell and create a array with this strings
  * Return: a string with the comand line
  */
-char get_command(void)
+char *get_command(void)
 {
 	char *buffer = NULL;
 	size_t size = 0; /*Number of bytes*/
@@ -24,22 +24,23 @@ char get_command(void)
 /**
  * check_builtin - Function
  * @f: funtion to check
+ * @command: line command
+ * @copy: copy line
+ * @list_token: line command tokens
  * Return: 0 always
  */
-void check_builtin(int (*f)())
+void check_builtin(int (*f)(), char *command, char *copy, char **list_token)
 {
 	if (f)
 	{
 		if (f() == 1)
 		{
-			free(comand);
+			free(command);
 			free(copy);
 			free(list_token);
 			exit(127);
 		}
-		continue;
 	}
-	;
 }
 /**
  * shell - While loop infinite
@@ -49,8 +50,6 @@ int shell(void)
 {
 	int (*function)();
 	char *command, *copy, **list_token;
-	long counter;
-	int i, status;
 
 	while (1)
 	{
@@ -72,8 +71,8 @@ int shell(void)
 
 			_strcpy(copy, command);
 			list_token = tk_cm(copy, " \n\t\r");
-			function = get_bultins(list_token[0]);
-			check_builtin(function);
+			function = get_builtins(list_token[0]);
+			check_builtin(function, command, copy, list_token);
 			execution(list_token, copy);
 			free(copy);
 			free(list_token);

@@ -42,56 +42,48 @@ int _strlen(char *s)
 	return (i);
 }
 /**
- * _strcpy - copy a string
- * @dest: input value
- * @src: input value
- * @n: input value
+ * _strcpy - copies the string pointed to by src into dest
+ * @dest: destination of the copy
+ * @src: source of the copy
  *
- * Return: dest
+ * Return: char pointer to dest
  */
-char *_strcpy(char *dest, char *src, int n)
+
+char *_strcpy(char *dest, char *src)
 {
-	int j;
+	int len = 0;
 
-	j = 0;
-	while (j < n && src[j] != '\0')
-	{
-		dest[j] = src[j];
-		j++;
-	}
-	while (j < n)
-	{
-		dest[j] = '\0';
-		j++;
-	}
+	if (src == NULL)
+		perror("error");
 
+	for (; src[len] != '\0'; len++)
+	{
+		dest[len] = src[len];
+	}
+	dest[len] = '\0';
 	return (dest);
 }
 /**
- * _strcat - concatenate two strings
- * using at most n bytes from src
- * @dest: input value
- * @src: input value
- * @n: input value
+ * _strcat - concatenate two strings.
+ * @dest: first string
+ * @src: string added to dest
  *
- * Return: dest
+ * Return: string.
  */
-char *_strcat(char *dest, char *src, int n)
-{
-	int i;
-	int j;
 
-	i = 0;
+char *_strcat(char *dest, char *src)
+{
+	int i = 0, j = 0;
+
 	while (dest[i] != '\0')
 	{
 		i++;
 	}
-	j = 0;
-	while (j < n && src[j] != '\0')
+	while (src[j] != '\0')
 	{
-	dest[i] = src[j];
-	i++;
-	j++;
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
 	dest[i] = '\0';
 	return (dest);
