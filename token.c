@@ -9,7 +9,7 @@ char **tk_cm(char *comand, char *delim)
 	char **token = NULL;
 	int i, word = 0;
 
-	word = ct_word(comand, " ");
+	word = count_word(comand, " ");
 	
 	token = malloc(sizeof(char *) * (word + 1));
 	if (token == NULL)

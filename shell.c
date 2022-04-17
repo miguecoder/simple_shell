@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * get_comand - This function read the input line
+ * get_command - This function read the input line
  * int the shell and create a array with this strings
  * Return: a string with the comand line
  */
-char get_comand(void)
+char get_command(void)
 {
 	char *buffer = NULL;
 	size_t size = 0; /*Number of bytes*/
@@ -48,7 +48,7 @@ void check_builtin(int (*f)())
 int shell(void)
 {
 	int (*function)();
-	char *comand, *copy, **list_token;
+	char *command, *copy, **list_token;
 	long counter;
 	int i, status;
 
@@ -58,19 +58,19 @@ int shell(void)
 
 		if (isatty(STDIN_FILENO))
 			write(1, prompt, 10);
-		comand = get_comand();
-		if (comand == NULL)
+		command = get_command();
+		if (command == NULL)
 			return (0);
-		if (comand && comand[0] != '\n')
+		if (command && command[0] != '\n')
 		{
-			copy = malloc(sizeof(char) * _strlen(comand) + 1);
+			copy = malloc(sizeof(char) * _strlen(command) + 1);
 			if (!copy)
 			{
 				free(copy);
 				return (0);
 			}
 
-			_strcpy(copy, comand);
+			_strcpy(copy, command);
 			list_token = tk_cm(copy, " \n\t\r");
 			function = get_bultins(list_token[0]);
 			check_builtin(function);
@@ -78,7 +78,7 @@ int shell(void)
 			free(copy);
 			free(list_token);
 		}
-		free(comand);
+		free(command);
 	}
 	return (0);
 }

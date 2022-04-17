@@ -15,7 +15,7 @@
 extern char **environ;
 
 /**
- * struct built - singly linked list
+ * struct built_ins - singly linked list
  * @key: variable
  * @function: function
  */
@@ -28,14 +28,22 @@ typedef struct built_ins
 
 
 int main(void);
-int shell(void)
+int shell(void);
 int env_ins(void);
 int exit_ins(void);
-char get_commando(void);
+char get_command(void);
 int _strcmp(char *s1, char *s2);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src, int n);
 char *_strcpy(char *dest, char *src, int n);
-int ct_word(char *strn, char *delim);
+int count_word(char *strn, char *delim);
+int (*get_builtins(char *stt))();
+void check_builtin(int (*f)());
+int execution(**list_token, *copy);
+char **tk_cm(char *comand, char *delim);
+void error_input(int errno, char *copy);
+char *_path_dir(char *comd);
+char *_strdup(const char *s);
+char **_getenv(const char *var);
 
 #endif
