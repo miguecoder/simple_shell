@@ -73,12 +73,13 @@ char *_path_dir(char *comd)
 
 	while (rout != NULL)
 	{
-		comand = malloc(sizeof(char) * (_strlen(dir) + _strlen(comd)) + 2)
+		comand = malloc(sizeof(char) * ((_strlen(rout) + _strlen(comd)) + 2));
 		if (comand == NULL)
 		{
 			return (NULL);
 		}
 
+		memset(comand, 0, (_strlen(rout) + _strlen(comd)));
 		comand = _strcat(comand, rout);
 		comand = _strcat(comand, "/");
 		comand = _strcat(comand, comd);
