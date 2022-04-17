@@ -78,6 +78,7 @@ char *_path_dir(char *comd)
 			return (NULL);
 		}
 
+		memset(comand, 0, (_strlen(rout) + _strlen(comd)));
 		comand = _strcat(comand, rout);
 		comand = _strcat(comand, "/");
 		comand = _strcat(comand, comd);
