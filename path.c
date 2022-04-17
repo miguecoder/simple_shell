@@ -1,22 +1,29 @@
 #include "shell.h"
 /**
- * _getenv - Gets an environmental variable from the PATH.
- * @var: The name of the environmental variable to get.
+ * _getenv - get a environ variable.
+ * @name: environ variable
  *
- * Return: If the environmental variable does not exist - NULL.
- *         Otherwise - a pointer to the environmental variable.
+ * Return: Always int.
  */
-char **_getenv(const char *var)
+
+char *_getenv(const char *name)
 {
-	int index, len;
+	int i = 0;
+	char *vble, *var;
+	int a = 0;
 
-	len = _strlen(var);
-	for (index = 0; environ[index]; index++)
+	a = _strlen((char *)name);
+
+	for (; environ[i] != NULL; i++)
 	{
-		if (_strncmp(var, environ[index], len) == 0)
-			return (&environ[index]);
-	}
+		vble = environ[i];
+		var = _strchr(vble, '=');
 
+		if (var && (((var - vble) == a) && !_strncmp(vble, (char *)name, a)))
+		{
+			return (var + 1);
+		}
+	}
 	return (NULL);
 }
 /**
