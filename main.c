@@ -5,7 +5,6 @@
  */
 int main(void)
 {
-	signal(/*el puto control D*/);
 	shell();
 	return (0);
 }
