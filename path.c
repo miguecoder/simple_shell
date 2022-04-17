@@ -27,6 +27,25 @@ char *_getenv(const char *name)
 	return (NULL);
 }
 /**
+ * _strchr - localate a character in a string.
+ * @s: string
+ * @c: character
+ *
+ * Return: Always 0.
+ */
+
+char *_strchr(char *s, char c)
+{
+	int j;
+
+	for (j = 0; s[j] != '\0'; j++)
+	{
+		if (s[j] == c)
+			return (&s[j]);
+	}
+	return (0);
+}
+/**
  * _strdup - duplicate the strins s.
  * @s: string to duplicate
  *

@@ -1,25 +1,47 @@
 #include "shell.h"
 /**
- * _strcmp - Compares two strings
- * @s1: First string
- * @s2: Second string
- * Return: Difference of first nonmatching character
+ * _strncmp - copies a string in long array.
+ * @str1: string 1
+ * @str2: string 2
+ * @n: The maximum number of characters to be compared.
+ *
+ * Return: Always 0.
+ */
+
+int _strncmp(const char *str1, const char *str2, size_t n)
+{
+	size_t m;
+	size_t p;
+
+	for (m = 0; str1[m] != '\0' && m < n; m++)
+	{
+		p = str1[m] - str2[m];
+		if (p != 0)
+		{
+			return (p);
+		}
+	}
+	return (0);
+}
+/**
+ * _strcmp - compare string values
+ * @s1: input value
+ * @s2: input value
+ *
+ * Return: s1[i] - s2[i]
  */
 int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		if (s1[i] == s2[i])
-		{
-			i++;
-			continue;
-		}
-		else
+		if (s1[i] != s2[i])
 		{
 			return (s1[i] - s2[i]);
 		}
+	i++;
 	}
 	return (0);
 }
