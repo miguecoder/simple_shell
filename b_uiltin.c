@@ -1,7 +1,8 @@
 #include "shell.h"
 /**
+ * exit_ins - exit command.
  *
- *
+ * Return: nothing.
  */
 int exit_ins(void)
 {
@@ -9,8 +10,9 @@ int exit_ins(void)
 }
 
 /**
+ * env_ins - write variable enviromen.
  *
- *
+ * Return: Always int.
  */
 int env_ins(void)
 {

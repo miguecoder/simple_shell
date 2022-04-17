@@ -1,7 +1,10 @@
 #include "shell.h"
 /**
+ * ct_word- word counter
+ * @strn: string a count.
+ * @delim: delimitator.
  *
- *
+ * Return: letter.
  */
 int ct_word(char *strn, char *delim)
 {
