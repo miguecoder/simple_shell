@@ -2,6 +2,7 @@
 /**
  * tk_cm - Function that create a tokens for line comand
  * @comand: line of input in linecomand
+ * @delim: delimitador
  * Return: array that contents all tokenof line comand
  */
 char **tk_cm(char *comand, char *delim)
@@ -10,12 +11,12 @@ char **tk_cm(char *comand, char *delim)
 	int i, word = 0;
 
 	word = count_word(comand, " ");
-	
+
 	token = malloc(sizeof(char *) * (word + 1));
 	if (token == NULL)
 	{
 		free(token);
-		return(NULL);
+		return (NULL);
 	}
 
 	token[0] = strtok(comand, delim);
@@ -23,11 +24,4 @@ char **tk_cm(char *comand, char *delim)
 		token[i] = strtok(NULL, delim);
 	return (token);
 }
-/**
- * tk_path - Function that do tokens with de
- * Return:
- */
-void tk_path(void)
-{
-	;
-}
+
