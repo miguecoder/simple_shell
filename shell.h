@@ -39,7 +39,7 @@ char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 int count_word(char *strn, char *delim);
 int (*get_builtins(char *stt))();
-void check_builtin(int (*f)(), char *command, char *copy, char **list_token);
+void check_builtin(int (*f)());
 int execution(char **list_token, char *copy);
 char **tk_cm(char *comand, char *delim);
 void error_input(int err_no, char *copy);
@@ -47,5 +47,5 @@ char *_path_dir(char *comd);
 char *_strdup(const char *s);
 char *_getenv(const char *name);
 char *_strchr(char *s, char c);
-
+void error_command(char *copy);
 #endif

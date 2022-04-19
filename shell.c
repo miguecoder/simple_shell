@@ -16,7 +16,7 @@ char *get_command(void)
 	length = getline(&buffer, &size, stdin); /*stdio.h*/
 	if (length == EOF)
 	{
-		write(1, "SHELL_GOD$ ", 10);
+		write(1, "\n", 1);
 		exit(0);
 	}
 	return (buffer);
@@ -24,20 +24,14 @@ char *get_command(void)
 /**
  * check_builtin - Function
  * @f: funtion to check
- * @command: line command
- * @copy: copy line
- * @list_token: line command tokens
  * Return: 0 always
  */
-void check_builtin(int (*f)(), char *command, char *copy, char **list_token)
+void check_builtin(int (*f)())
 {
 	if (f)
 	{
 		if (f() == 1)
 		{
-			free(command);
-			free(copy);
-			free(list_token);
 			exit(127);
 		}
 	}
@@ -53,7 +47,7 @@ int shell(void)
 
 	while (1)
 	{
-		char *prompt = "SHELL_GOD$ ";
+		char *prompt = "SHELL_GOD$  ";
 
 		if (isatty(STDIN_FILENO))
 			write(1, prompt, 10);
@@ -72,7 +66,7 @@ int shell(void)
 			_strcpy(copy, command);
 			list_token = tk_cm(copy, " \n\t\r");
 			function = get_builtins(list_token[0]);
-			check_builtin(function, command, copy, list_token);
+			check_builtin(function);
 			execution(list_token, copy);
 			free(copy);
 			free(list_token);

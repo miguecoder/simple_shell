@@ -77,9 +77,32 @@ char *_strdup(const char *s)
 	return (dup);
 }
 /**
+ * error_command - function error
+ * @copy: comando completo
+ * Return: nothing
+ */
+void error_command(char *copy)
+{
+	char *msj_error;
+	int length = 0;
+
+	msj_error = malloc((sizeof(char) * _strlen(copy)) + 9);
+	if (msj_error == NULL)
+	{
+		free(msj_error);
+		return;
+	}
+	_strcat(msj_error, "./hsh: ");
+	_strcat(msj_error, "1");
+	_strcat(msj_error, ": ");
+	_strcat(msj_error, copy);
+	_strcat(msj_error, ": not found\n");
+	length = _strlen(msj_error);
+	write(1, msj_error, (length + 1));
+}
+/**
  * _path_dir - values path.
  * @comd: line entered.
- *
  * Return: a char.
  */
 char *_path_dir(char *comd)
@@ -89,15 +112,13 @@ char *_path_dir(char *comd)
 	char *comand;
 	struct stat st;
 
-
-	if (stat(comd, &st) == 0)
-		return (comd);
-
 	path = _getenv("PATH");
 	rout = strtok(path, delim);
 
 	while (rout != NULL)
 	{
+		if (stat(comd, &st) == 0)
+			return (comd);
 		comand = malloc(sizeof(char) * (_strlen(rout) + _strlen(comd) + 2));
 		if (comand == NULL)
 		{
@@ -115,8 +136,8 @@ char *_path_dir(char *comd)
 			return (comand);
 		}
 		rout = strtok(NULL, delim);
-		rout++;
 	}
+
 	free(comand);
 	free(rout);
 	return (NULL);

@@ -16,7 +16,7 @@ void error_input(int err_no, char *copy)
 		free(msj_error);
 		return;
 	}
-	_strcat(msj_error, "hsh: ");
+	_strcat(msj_error, "./hsh: ");
 	_strcat(msj_error, "1");
 	_strcat(msj_error, ": ");
 	_strcat(msj_error, copy);

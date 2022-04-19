@@ -14,11 +14,12 @@ int execution(char **list_token, char *copy)
 
 	pidC = fork();
 
-	if (pidC > 0)
+	if (pidC == -1)
 	{
-		pidC = wait(&status);
+		perror("Creation of a child process was unsuccessful!");
+		exit(-1);
 	}
-	else if (pidC == 0)
+	if (pidC == 0)
 	{
 		rout = _path_dir(list_token[0]);
 		execve(rout, list_token, environ);
@@ -29,8 +30,7 @@ int execution(char **list_token, char *copy)
 	}
 	else
 	{
-		perror("Creation of a child process was unsuccessful!");
-		exit(-1);
+		pidC = wait(&status);
 	}
 	return (0);
 }
