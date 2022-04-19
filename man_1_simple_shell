@@ -1,0 +1,52 @@
+.TH HSH 1 "20 Abril 2022" "1" "Simple Shell man page"
+.SH NAME
+.B hsh
+- A simple UNIX command interpreter.
+.SH SYNOPSIS
+.B ./hsh
+.SH DESCRIPTION
+This program is a simple shell that has been made by the Holberton guidelines. It contains basic features and functions found in other shell programs.
+.SS Overview
+This shell is an executable that reads lines from the prompt, interprets them, and generally executes other commands. It runs by compiling all .c files in the repository to create an executable
+.SS Path Search
+When locating a command, this shell first looks to see if it has an executable by that name in the PATH of env. Then it looks for builtin commands by that name.
+
+.SH ENVIRONMENT
+Environment variables affect the execution of
+.B sh
+:
+
+     ENV	Initialization file for interactive shells.
+.B exit
+builtin is used with a numeric argument, it will return the argument.
+
+.SH MODES
+.B hsh
+Interactive mode
+.SS
+EXAMPLE:
+$ ls -l
+.B ./hsh
+Non-interactive mode
+.SS
+EXAMPLE:
+$ echo "ls -l" | ./hsh
+
+.SH COMPATILIBITY
+Simple_shell tries to emulate sh when invoked as sh, to run it you must clone the repository, compile and run the compiled file as follows:
+.PP
+\fBgcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh ; ./hsh\fP
+
+.SH SEE ALSO
+.I sh(1), Betty(1)
+
+.SH AUTHORS
+.PP
+.PD 0
+.TP
+\fBSimple_shell\fP was written by:
+.TP
+MIGUEL MARQUEZ   \fB<https://github.com/miguecoder>\fP
+.TP
+SANTIAGO OSORNO   \fB<https://github.com/santiago1411>\fP
+.PD
