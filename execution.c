@@ -28,9 +28,6 @@ int execution(char **list_token, char *copy)
 		free(rout);
 		exit(0);
 	}
-	else
-	{
-		pidC = wait(&status);
-	}
+	pidC = wait(&status);
 	return (0);
 }

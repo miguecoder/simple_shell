@@ -46,61 +46,6 @@ char *_strchr(char *s, char c)
 	return (0);
 }
 /**
- * _strdup - duplicate the strins s.
- * @s: string to duplicate
- *
- * Return: string.
- */
-
-char *_strdup(const char *s)
-{
-	int i;
-	char *dup;
-	int len;
-
-	if (s == NULL)
-	{
-		return (NULL);
-	}
-
-	len = strlen(s);
-	dup = malloc((sizeof(char) * len) + 1);
-	if (dup == NULL)
-	{
-		return (NULL);
-	}
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		dup[i] = s[i];
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-/**
- * error_command - function error
- * @copy: comando completo
- * Return: nothing
- */
-void error_command(char *copy)
-{
-	char *msj_error;
-	int length = 0;
-
-	msj_error = malloc((sizeof(char) * _strlen(copy)) + 9);
-	if (msj_error == NULL)
-	{
-		free(msj_error);
-		return;
-	}
-	_strcat(msj_error, "./hsh: ");
-	_strcat(msj_error, "1");
-	_strcat(msj_error, ": ");
-	_strcat(msj_error, copy);
-	_strcat(msj_error, ": not found\n");
-	length = _strlen(msj_error);
-	write(1, msj_error, (length + 1));
-}
-/**
  * _path_dir - values path.
  * @comd: line entered.
  * Return: a char.
@@ -125,14 +70,12 @@ char *_path_dir(char *comd)
 			return (NULL);
 		}
 
-		memset(comand, 0, (_strlen(rout) + _strlen(comd)));
 		comand = _strcat(comand, rout);
 		comand = _strcat(comand, "/");
 		comand = _strcat(comand, comd);
 
 		if (stat(comand, &st) == 0)
 		{
-			rout = _strdup(comand);
 			return (comand);
 		}
 		rout = strtok(NULL, delim);

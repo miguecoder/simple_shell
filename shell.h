@@ -44,8 +44,6 @@ int execution(char **list_token, char *copy);
 char **tk_cm(char *comand, char *delim);
 void error_input(int err_no, char *copy);
 char *_path_dir(char *comd);
-char *_strdup(const char *s);
 char *_getenv(const char *name);
 char *_strchr(char *s, char c);
-void error_command(char *copy);
 #endif
