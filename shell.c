@@ -16,7 +16,6 @@ char *get_command(void)
 	length = getline(&buffer, &size, stdin); /*stdio.h*/
 	if (length == EOF)
 	{
-		write(1, "\n", 1);
 		exit(0);
 	}
 	return (buffer);
