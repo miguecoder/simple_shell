@@ -22,7 +22,7 @@ int env_ins(void)
 
 	while (environ[i] != NULL)
 	{
-		size = _strlen(environ[i];
+		size = _strlen(environ[i]);
 		write(1, environ[i], size);
 		write(1, "\n", 1);
 		i++;
