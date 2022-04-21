@@ -7,7 +7,7 @@
 int exit_ins(char **list_command)
 {
 	if (list_command[1] == NULL)
-		return (1);
+		return (0);
 	return (1);
 }
 
