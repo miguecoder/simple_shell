@@ -10,7 +10,7 @@ char **tk_cm(char *comand, char *delim)
 	char **token = NULL;
 	int i, word = 0;
 
-	word = count_word(comand, " ");
+	word = count_word(comand);
 
 	token = malloc(sizeof(char *) * (word + 1));
 	if (token == NULL)
@@ -20,7 +20,12 @@ char **tk_cm(char *comand, char *delim)
 	}
 
 	token[0] = strtok(comand, delim);
-	for (i = 1; i < word; i++)
+	if (token[0] == NULL)
+	{
+		free(token);
+		return (NULL);
+	}
+	for (i = 1; i < word + 1; i++)
 		token[i] = strtok(NULL, delim);
 	return (token);
 }

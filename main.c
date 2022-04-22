@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * signal_c - Signal handlig
- * @signal:
+ * @signal: ctrl c
  * Return: nothing
  *
  */

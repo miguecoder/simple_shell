@@ -4,7 +4,6 @@
  * @name: environ variable
  *
  * Return: Always int.
- */
 
 char *_getenv(const char *name)
 {
@@ -26,13 +25,11 @@ char *_getenv(const char *name)
 	}
 	return (NULL);
 }
-/**
  * _strchr - localate a character in a string.
  * @s: string
  * @c: character
  *
  * Return: Always 0.
- */
 
 char *_strchr(char *s, char c)
 {
@@ -45,19 +42,86 @@ char *_strchr(char *s, char c)
 	}
 	return (0);
 }
-/**
+
  * _path_dir - values path.
  * @comd: line entered.
  * Return: a char.
  */
+
+/**
+ * _strncmp - compare a string with the number of bits
+ * @path: first string
+ * @match: second string
+ * @n: number th bits to be compared
+ * Return: return the path if find a match
+ */
+char *_strincmp(char *path, char *match, size_t n)
+{
+	while (n && *path && (*path == *match))
+	{
+		++path;
+		++match;
+		--n;
+	}
+	if (n == 0)
+	{
+		return (path);
+	}
+	else
+	{
+		return (NULL);
+	}
+}
+
+/**
+ * _strdup - returns a pointer to a newly allocated space
+ * @s: string to be duplicated
+ * Return: a pointer to new string
+ */
+char *_strdup(char *s)
+{
+	int i;
+	char *dup;
+	int len;
+
+	if (s == NULL)
+	{
+		return (NULL);
+	}
+	len = _strlen(s);
+	dup = malloc((sizeof(char) * len) + 1);
+	if (dup == NULL)
+	{
+		return (NULL);
+	}
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		dup[i] = s[i];
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
 char *_path_dir(char *comd)
 {
 	char *path, *rout;
 	char *delim = ":\n";
 	char *comand;
+	int i = 0;
 	struct stat st;
 
-	path = _getenv("PATH");
+	while (environ[i])
+		{
+		if (_strincmp(environ[i], "PATH", 4) != NULL)
+		{
+			path = _strdup(environ[i]);
+			break;
+		}
+		i++;
+	}
+	if (!path)
+		return (NULL);
+
 	rout = strtok(path, delim);
 
 	while (rout != NULL)
@@ -65,6 +129,7 @@ char *_path_dir(char *comd)
 		if (stat(comd, &st) == 0)
 			return (comd);
 		comand = malloc(sizeof(char) * (_strlen(rout) + _strlen(comd) + 2));
+		_strcpy(comand, comd);
 		if (comand == NULL)
 		{
 			return (NULL);
@@ -76,6 +141,8 @@ char *_path_dir(char *comd)
 
 		if (stat(comand, &st) == 0)
 		{
+			free(rout);
+			free(comd);
 			return (comand);
 		}
 		rout = strtok(NULL, delim);

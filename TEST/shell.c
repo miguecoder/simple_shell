@@ -26,6 +26,7 @@ char *get_command(void)
  * @f: funtion to check
  * Return: 0 always
  */
+/**
 void check_builtin(int (*f)())
 {
 	if (f)
@@ -35,7 +36,8 @@ void check_builtin(int (*f)())
 			exit(127);
 		}
 	}
-}
+}*/
+
 /**
  * shell - While loop infinite
  * Return: 0
@@ -66,7 +68,13 @@ int shell(void)
 			_strcpy(copy, command);
 			list_token = tk_cm(copy, " \n\t\r");
 			function = get_builtins(list_token[0]);
-			check_builtin(function);
+			if (function)
+			{
+				if (function() == 1)
+				{
+					free(command), free(copy), free(list_token), exit(127);
+					continue;
+				}
 			execution(list_token, copy);
 			free(copy);
 			free(list_token);
@@ -74,4 +82,5 @@ int shell(void)
 		free(command);
 	}
 	return (0);
+	}
 }

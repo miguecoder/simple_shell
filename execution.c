@@ -2,32 +2,31 @@
 /**
  * execution - Function for the child process
  * @list_token: double pointer to the tokens of line comand
- * @copy: line comand got.
+ * @path: line command
  * Return: 0 always.
  */
-int execution(char **list_token, char *copy)
+int execution(char **list_token, char *path)
 {
 	pid_t pidC;
-	char *rout;
 	int status;
-	int error_numbs = 0;
 
 	pidC = fork();
 
 	if (pidC == -1)
 	{
 		perror("Creation of a child process was unsuccessful!");
-		exit(-1);
+		return (-1);
 	}
 	if (pidC == 0)
 	{
-		rout = _path_dir(list_token[0]);
-		execve(rout, list_token, environ);
-		error_numbs = errno;
-		error_input(error_numbs, copy);
-		free(rout);
-		exit(0);
+		if (execve(path, list_token, environ) == -1)
+		{
+			return (-1);
+		}
 	}
-	pidC = wait(&status);
+	else
+	{
+		wait(&status);
+	}
 	return (0);
 }

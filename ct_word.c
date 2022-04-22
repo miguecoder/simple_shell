@@ -2,17 +2,17 @@
 /**
  * count_word - Functions that count how many word have the command
  * @strn: String that contains the line command got
- * @delim: Delimiter for each word
  * Return: number of words.
  */
-int count_word(char *strn, char *delim)
+int count_word(char *strn)
 {
 	int ct = 0;
 	int word = 0;
 
 	while (*strn)
 	{
-		if (*strn == *delim || *strn == '\n' || *strn == '\t')
+		if (*strn == ' ' || *strn == '\n' || *strn == '\t' || *strn == '='
+				|| *strn == ':')
 			ct = 0;
 
 		else if (ct == 0)

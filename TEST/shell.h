@@ -30,7 +30,7 @@ void signal_c(__attribute__((unused))int signal);
 int main(void);
 int shell(void);
 int env_ins(void);
-int exit_ins(char **list_command);
+int exit_ins(void);
 char *get_command(void);
 int _strncmp(const char *str1, const char *str2, size_t n);
 int _strcmp(char *s1, char *s2);
@@ -46,4 +46,6 @@ void error_input(int err_no, char *copy);
 char *_path_dir(char *comd);
 char *_getenv(const char *name);
 char *_strchr(char *s, char c);
+char *_strdup(char *s);
+char *_strincmp(char *path, char *match, size_t n);
 #endif

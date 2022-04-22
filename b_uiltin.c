@@ -1,13 +1,10 @@
 #include "shell.h"
 /**
  * exit_ins - exit command.
- * @list_command: list of command
  * Return: nothing.
  */
-int exit_ins(char **list_command)
+int exit_ins(void)
 {
-	if (list_command[1] == NULL)
-		return (1);
 	return (1);
 }
 
@@ -18,13 +15,12 @@ int exit_ins(char **list_command)
  */
 int env_ins(void)
 {
-	int size, i = 0;
+	int i = 0;
 
-	while (environ[i] != NULL)
+	while (environ[i])
 	{
-		size = _strlen(environ[i]);
-		write(1, environ[i], size);
-		write(1, "\n", 1);
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
 	return (0);

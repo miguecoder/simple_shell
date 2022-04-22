@@ -29,6 +29,5 @@ void error_input(int err_no, char *copy)
 	}
 	else
 		perror(msj_error);
-	free(copy);
 	free(msj_error);
 }

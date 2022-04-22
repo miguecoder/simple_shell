@@ -1,49 +1,53 @@
 #include "shell.h"
 /**
  * _getenv - get a environ variable.
- * @name: environ variable
  *
  * Return: Always int.
  */
 
-char *_getenv(const char *name)
+char *_getenv(void)
 {
 	int i = 0;
-	char *vble, *var;
-	int a = 0;
+	char *path = NULL;
 
-	a = _strlen((char *)name);
-
-	for (; environ[i] != NULL; i++)
+	while (environ[i])
 	{
-		vble = environ[i];
-		var = _strchr(vble, '=');
-
-		if (var && (((var - vble) == a) && !_strncmp(vble, (char *)name, a)))
+		if (_strncmp(environ[i], "PATH", 4) == 0)
 		{
-			return (var + 1);
+			path = _strdup(environ[i]);
+			return (path);
 		}
+		i++;
 	}
 	return (NULL);
 }
 /**
- * _strchr - localate a character in a string.
- * @s: string
- * @c: character
- *
- * Return: Always 0.
+ * _strdup - returns a pointer to a newly allocated space
+ * @s: string to be duplicated
+ * Return: a pointer to new string
  */
-
-char *_strchr(char *s, char c)
+char *_strdup(char *s)
 {
-	int j;
+	int i;
+	char *dup;
+	int len;
 
-	for (j = 0; s[j] != '\0'; j++)
+	if (s == NULL)
 	{
-		if (s[j] == c)
-			return (&s[j]);
+		return (NULL);
 	}
-	return (0);
+	len = _strlen(s);
+	dup = malloc((sizeof(char) * len) + 1);
+	if (dup == NULL)
+	{
+		return (NULL);
+	}
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		dup[i] = s[i];
+	}
+	dup[i] = '\0';
+	return (dup);
 }
 /**
  * _path_dir - values path.
@@ -52,36 +56,42 @@ char *_strchr(char *s, char c)
  */
 char *_path_dir(char *comd)
 {
-	char *path, *rout;
-	char *delim = ":\n";
-	char *comand;
+	char *path = NULL, **rout = NULL;
+	char *comand = NULL;
+	int i = 1;
 	struct stat st;
 
-	path = _getenv("PATH");
-	rout = strtok(path, delim);
-
-	while (rout != NULL)
+	path = _getenv();
+	rout = tk_cm(path, "=:");
+	while (rout[i] != NULL)
 	{
 		if (stat(comd, &st) == 0)
-			return (comd);
-		comand = malloc(sizeof(char) * (_strlen(rout) + _strlen(comd) + 2));
-		if (comand == NULL)
 		{
-			return (NULL);
-		}
-
-		comand = _strcat(comand, rout);
-		comand = _strcat(comand, "/");
-		comand = _strcat(comand, comd);
-
-		if (stat(comand, &st) == 0)
-		{
+			comand = _strdup(comd);
+			free(rout);
+			free(path);
 			return (comand);
 		}
-		rout = strtok(NULL, delim);
+		comand = malloc(sizeof(char) * (_strlen(rout[i]) + _strlen(comd) + 2));
+		if (comand == NULL)
+		{
+			free(comand);
+			return (NULL);
+		}
+		_strcpy(comand, rout[i]);
+		_strcat(comand, "/");
+		_strcat(comand, comd);
+		if (stat(comand, &st) == 0)
+		{
+			free(path);
+			free(rout);
+			return (comand);
+		}
+		free(comand);
+		i++;
 	}
 
-	free(comand);
+	free(path);
 	free(rout);
 	return (NULL);
 }
