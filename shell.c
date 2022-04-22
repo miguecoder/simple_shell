@@ -47,7 +47,7 @@ void check_builtin(int (*f)(), char **buffer, char *command)
 int shell(void)
 {
 	int (*function)(), error_numbs;
-	char *command = NULL, **list_token = NULL, char *path = NULL;
+	char *command = NULL, **list_token = NULL, *path = NULL;
 
 	while (1)
 	{
